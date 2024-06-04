@@ -19,6 +19,7 @@ void addStudentRecord(Student students[], int &count, int maxSize)
         cout << "\nCannot add more students. Database is full." << endl;
         return;
     }
+
     cout << "\n\tEnter name: ";
     cin >> students[count].name;
     cout << "\tEnter roll number: ";
@@ -123,18 +124,120 @@ void deleteStudentRecordByRollNo(Student students[], int &count)
     for (int j = i; j < count - 1; j++)
         students[j] = students[j + 1];
 
-    cout << "\n\tStudent record deleted successfully." << endl;
     count--;
+    cout << "\n\tStudent record deleted successfully." << endl;
 }
 
-void deleteAllStudentsRecords(Student students[], int &count){
+void deleteAllStudentsRecords(Student students[], int &count)
+{
     count = 0; // reset the count
 
     cout << "\n\tAll student records deleted successfully." << endl;
-
 }
 
+void updateStudentRecordByIndex(Student students[], int &count, int maxSize)
+{
+    if (count < 1)
+    {
+        cout << "\n\tNo student records to update." << endl;
+        return;
+    }
 
+    int index;
+
+    cout << "\n\tEnter student's index to update: ";
+
+    cin >> index;
+
+    if (index >= maxSize)
+    {
+        cout << "\n\tNo student found at the given index." << endl;
+        return;
+    }
+
+    cout << "\n\tEnter updated name: ";
+    cin >> students[index].name;
+    cout << "\tEnter updated roll number: ";
+    cin >> students[index].rollNumber;
+    cout << "\tEnter updated marks: ";
+    cin >> students[index].marks;
+
+    cout << "\n\tStudent record updated successfully." << endl;
+}
+
+void updateStudentRecordByName(Student students[], int &count)
+{
+    if (count < 1)
+    {
+        cout << "\nNo student records to update." << endl;
+        return;
+    }
+
+    string nameToUpdate;
+
+    cout << "\n\tEnter student's name to update: ";
+
+    cin >> nameToUpdate;
+
+    int i;
+    for (i = 0; i < count; i++)
+    {
+        if (students[i].name == nameToUpdate)
+            break;
+    }
+
+    if (i == count)
+    {
+        cout << "\n\tNo student found with the given name." << endl;
+        return;
+    }
+
+    cout << "\n\tEnter updated name: ";
+    cin >> students[i].name;
+    cout << "\tEnter updated roll number: ";
+    cin >> students[i].rollNumber;
+    cout << "\tEnter updated marks: ";
+    cin >> students[i].marks;
+
+    cout << "\n\tStudent record updated successfully." << endl;
+}
+
+void updateStudentRecordByRollNo(Student students[], int &count)
+{
+    if (count < 1)
+    {
+        cout << "\nNo student records to update." << endl;
+        return;
+    }
+
+    int rollNoToUpdate;
+
+    cout << "\n\tEnter student's roll no to update: ";
+
+    cin >> rollNoToUpdate;
+
+    int i;
+    for (i = 0; i < count; i++)
+    {
+        if (students[i].rollNumber == rollNoToUpdate)
+            break;
+    }
+
+    if (i == count)
+    {
+        cout << "\n\tNo student found with the given roll number." << endl;
+        return;
+    }
+
+    cout << "\n\tEnter updated name: ";
+    cin >> students[i].name;
+    cout << "\tEnter updated roll number: ";
+    cin >> students[i].rollNumber;
+    cout << "\tEnter updated marks: ";
+    cin >> students[i].marks;
+
+    cout << "\n\tStudent record updated successfully." << endl;
+}
 
 // Function to display all student records in the database
 void displayAllStudentRecords(const Student students[], int count)
@@ -173,6 +276,9 @@ int main()
         cout << "\t4. Delete a Student Record [By Name]\n";
         cout << "\t5. Delete a Student Record [By Roll Number]\n";
         cout << "\t6. Delete All Student Records\n";
+        cout << "\t7. Update a Student Record [By Index]\n";
+        cout << "\t8. Update a Student Record [By Name]\n";
+        cout << "\t9. Update a Student Record [By Roll Number]\n";
         cout << "\t99. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
@@ -201,6 +307,18 @@ int main()
 
         case 6:
             deleteAllStudentsRecords(students, count);
+            break;
+
+        case 7:
+            updateStudentRecordByIndex(students, count, maxSize);
+            break;
+
+        case 8:
+            updateStudentRecordByName(students, count);
+            break;
+
+        case 9:
+            updateStudentRecordByRollNo(students, count);
             break;
 
         case 99:
