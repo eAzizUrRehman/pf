@@ -323,7 +323,7 @@ int main()
 
         case 99:
             cout << "Exiting program. Thank you for using Student Management System!" << endl;
-            break;
+           return 0;
 
         default:
             cout << "Invalid choice. Please enter again." << endl;
